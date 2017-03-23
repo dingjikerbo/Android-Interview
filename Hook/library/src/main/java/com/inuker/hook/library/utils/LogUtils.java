@@ -1,4 +1,4 @@
-package com.inuker.hook.library.hook.utils;
+package com.inuker.hook.library.utils;
 
 import android.util.Log;
 

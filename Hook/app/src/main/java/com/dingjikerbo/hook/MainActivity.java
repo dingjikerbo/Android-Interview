@@ -1,12 +1,15 @@
 package com.dingjikerbo.hook;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.view.View;
 
 import com.dingjikerbo.hook.compat.PowerManagerCompat;
+import com.dingjikerbo.hook.hook.ServiceManagerHook;
 import com.dingjikerbo.hook.utils.LogUtils;
+import com.inuker.hook.library.hook.ServiceHook;
 
 public class MainActivity extends Activity {
 
