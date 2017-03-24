@@ -1,18 +1,8 @@
 package com.inuker.hook.library.hook;
 
-import android.app.Service;
-import android.os.IBinder;
-import android.os.IInterface;
-
-import org.apache.commons.lang.reflect.FieldUtils;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
-import java.util.HashMap;
-
 import com.inuker.hook.library.compat.ServiceManagerCompat;
+
+import java.lang.reflect.Method;
 
 /**
  * Created by liwentian on 2017/3/23.
@@ -20,15 +10,21 @@ import com.inuker.hook.library.compat.ServiceManagerCompat;
 
 public class ServiceManagerHook {
 
-    private static Object sServiceManager;
+    private static BinderHook mHookedBinder;
 
-    public static void hook() throws Exception {
-        Field field = ServiceManagerCompat.getsServiceManagerField();
-        Object sServiceManager = field.get(null);
-        
-    }
+    public static void hook(BinderHook.BinderHookHandler handler) {
+        Object sServiceManager = ServiceManagerCompat.getsServiceManager();
+        mHookedBinder = new BinderHook(sServiceManager, new BinderHook.BinderHookInvoker() {
+            @Override
+            public Object onInvoke(Object original, Method method, Object[] args) throws Throwable {
+                return null;
+            }
+        });
 
-    private static ClassLoader getClassLoader() {
-        return ServiceManagerHook.class.getClassLoader();
+        try {
+            ServiceManagerCompat.getsServiceManagerField().set(null, mHookedBinder.proxyInterface);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 }

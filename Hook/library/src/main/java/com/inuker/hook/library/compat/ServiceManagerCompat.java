@@ -1,7 +1,7 @@
 package com.inuker.hook.library.compat;
 
-import org.apache.commons.lang.reflect.FieldUtils;
-import org.apache.commons.lang.reflect.ReflectionUtils;
+import org.apache.commons.lang3.ClassUtils;
+import org.apache.commons.lang3.reflect.FieldUtils;
 
 import java.lang.reflect.Field;
 
@@ -13,13 +13,39 @@ public class ServiceManagerCompat {
 
     private static Class<?> serviceManagerClazz;
 
+    private static Class<?> iserviceManagerClazz;
+
     private static Field sServiceManagerField;
 
     public static Class<?> getServiceManagerClazz() {
         if (serviceManagerClazz == null) {
-            serviceManagerClazz = ReflectionUtils.getClass("android.os.ServiceManager");
+            try {
+                serviceManagerClazz = ClassUtils.getClass("android.os.ServiceManager");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
         return serviceManagerClazz;
+    }
+
+    public static Class<?> getIServiceManagerClazz() {
+        if (iserviceManagerClazz == null) {
+            try {
+                iserviceManagerClazz = ClassUtils.getClass("android.os.IServiceManager");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        return iserviceManagerClazz;
+    }
+
+    public static Object getsServiceManager() {
+        try {
+            return getsServiceManagerField().get(null);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static Field getsServiceManagerField() {
