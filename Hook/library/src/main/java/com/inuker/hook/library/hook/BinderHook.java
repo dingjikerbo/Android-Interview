@@ -2,13 +2,12 @@ package com.inuker.hook.library.hook;
 
 import android.os.IBinder;
 
+import com.inuker.hook.library.utils.BinderUtils;
 import com.inuker.hook.library.utils.LogUtils;
 
 import org.apache.commons.lang3.ClassUtils;
-import org.apache.commons.lang3.reflect.MethodUtils;
 
 import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
@@ -18,43 +17,27 @@ import java.lang.reflect.Proxy;
 
 public class BinderHook {
 
-    public Class<?>[] binderIntfClazz;
-
-    public IBinder originalBinder;
-
-    public IBinder proxyBinder;
+    public Class<?> binderIntfClazz;
 
     public Object originalInterface;
 
+    public IBinder originalBinder;
+
     public Object proxyInterface;
+
+    public IBinder proxyBinder;
 
     /**
      * IServiceManager sServiceManager;
      */
     public BinderHook(Object object, BinderHookInvoker invoker) {
-        binderIntfClazz = (Class<?>[]) ClassUtils.getAllInterfaces(object.getClass()).toArray(new Class<?>[0]);
-        originalInterface = object;
-
-        try {
-            originalBinder = (IBinder) MethodUtils.invokeMethod(object, "asBinder");
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-        proxyInterface = getProxyInterface(invoker);
-        proxyBinder = getProxyBinder();
+        this.originalInterface = object;
+        this.originalBinder = BinderUtils.asBinder(object);
+        this.binderIntfClazz = BinderUtils.getBinderInterface(object);
+        this.proxyInterface = getProxyInterface(invoker);
+        LogUtils.v(String.format("proxyInterface = %s", proxyInterface));
+        this.proxyBinder = getProxyBinder();
     }
-
-//    BinderHook(IBinder originalBinder, Class<?> binderIntfClazz) {
-//        this.originalBinder = originalBinder;
-//        this.binderIntfClazz = binderIntfClazz;
-//
-//        Class<?> stubClazz = ReflectionUtils.getClass(binderIntfClazz.getName() + "$Stub");
-//        originalInterface = MethodUtils.invokeMethod(stubClazz, "asInterface", originalBinder);
-//    }
 
     public IBinder getProxyBinder() {
         if (proxyBinder == null) {
@@ -79,7 +62,8 @@ public class BinderHook {
 
         ClassLoader loader = originalInterface.getClass().getClassLoader();
         proxyInterface = Proxy.newProxyInstance(loader,
-                binderIntfClazz, new BinderHookHandler(originalInterface, "InterfaceHook") {
+                ClassUtils.getAllInterfaces(originalInterface.getClass()).toArray(new Class<?>[0]),
+                new BinderHookHandler(originalInterface, "InterfaceHook") {
                     @Override
                     public Object onInvoke(Object original, Method method, Object[] args) throws Throwable {
                         return invoker.onInvoke(original, method, args);
@@ -92,7 +76,7 @@ public class BinderHook {
         Object onInvoke(Object original, Method method, Object[] args) throws Throwable;
     }
 
-    public abstract static class BinderHookHandler implements InvocationHandler, BinderHookInvoker {
+    abstract static class BinderHookHandler implements InvocationHandler, BinderHookInvoker {
 
         Object originalObject;
 
@@ -105,12 +89,11 @@ public class BinderHook {
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            LogUtils.v(String.format("Tag %s: invoke: %s", tag, method));
-
             if (method.getDeclaringClass().equals(Object.class)) {
                 return method.invoke(originalObject, args);
             }
 
+            LogUtils.v(String.format("Invoke %s: %s", tag, method));
             return onInvoke(originalObject, method, args);
         }
     }

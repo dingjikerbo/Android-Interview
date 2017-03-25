@@ -55,4 +55,13 @@ public class ServiceManagerCompat {
         return sServiceManagerField;
     }
 
+    public static Object getsCache() {
+        try {
+            return FieldUtils.getField(getServiceManagerClazz(), "sCache", true).get(null);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

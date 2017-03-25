@@ -14,6 +14,7 @@ import android.view.View;
 import com.inuker.hook.library.IResponse;
 import com.inuker.hook.library.compat.ServiceManagerCompat;
 import com.inuker.hook.library.hook.BinderHook;
+import com.inuker.hook.library.hook.PowerManagerHook;
 import com.inuker.hook.library.hook.ServiceManagerHook;
 import com.inuker.hook.library.utils.LogUtils;
 
@@ -38,45 +39,89 @@ public class MainActivity extends Activity {
                 onclick();
             }
         });
+
+        findViewById(R.id.btn2).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                call();
+            }
+        });
+    }
+
+    private void call() {
+        PowerManager manager = (PowerManager) getSystemService(POWER_SERVICE);
+        PowerManager.WakeLock lock = manager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "hello");
+        lock.acquire();
     }
 
     private void onclick() {
-        ServiceManagerHook.hook(new BinderHook.BinderHookHandler() {
-            @Override
-            public Object invoke(Object original, Method method, Object[] args) {
-                LogUtils.v(String.format("%s.%s()", original, method));
-                IBinder binder =  new Response.Stub() {
+//        ServiceManagerHook.hook();
 
-                    @Override
-                    public void onResponse(int code) throws RemoteException {
-                        LogUtils.v(String.format("code is %d", code));
-                    }
-                };
-                LogUtils.v(String.format("binder here is %s", binder));
-                return binder;
-            }
-        });
+        PowerManager manager = (PowerManager) getSystemService(POWER_SERVICE);
 
-        IBinder binder = null;
+        Object object = null;
         try {
-            Class<?> clazz = ServiceManagerCompat.getServiceManagerClazz();
-            HashMap<String, IBinder> cache = (HashMap) FieldUtils.getField(clazz, "sCache", true).get(null);
-            String name = "bluetooth_manager";
-            LogUtils.v(String.format("contains %b", cache.containsKey(name)));
-            binder = (IBinder) MethodUtils.invokeStaticMethod(clazz, "getService", name);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            object = FieldUtils.getField(PowerManager.class, "mService", true).get(manager);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
         }
-        LogUtils.v(String.format("binder is %s", binder));
+        LogUtils.v(String.format("prev object = %s", object));
+
         try {
-            IResponse.Stub.asInterface(binder).onResponse(4);
-        } catch (RemoteException e) {
+            PowerManagerHook.hook(this);
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+
+        try {
+            object = FieldUtils.getField(PowerManager.class, "mService", true).get(manager);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        LogUtils.v(String.format("after object = %s", object));
+
+//        LogUtils.v(String.format("WakeLock %s", lock));
+//
+//        ServiceManagerHook.hook(new BinderHook.BinderHookInvoker() {
+//            @Override
+//            public Object onInvoke(Object original, Method method, Object[] args) throws Throwable {
+//                LogUtils.v(String.format("onInvoke %s -> %s()", original, method));
+//
+//                if (method.getName().equals("getService")) {
+//                    return new Response.Stub() {
+//
+//                        @Override
+//                        public void onResponse(int code) throws RemoteException {
+//                            LogUtils.v(String.format("code is %d", code));
+//                        }
+//                    };
+//                }
+//
+//                return method.invoke(original, args);
+//            }
+//        });
+//
+//        IBinder binder = null;
+//        try {
+//            Class<?> clazz = ServiceManagerCompat.getServiceManagerClazz();
+//            HashMap<String, IBinder> cache = (HashMap) FieldUtils.getField(clazz, "sCache", true).get(null);
+//            String name = "bluetooth_manager";
+//            LogUtils.v(String.format("contains %b", cache.containsKey(name)));
+//            binder = (IBinder) MethodUtils.invokeStaticMethod(clazz, "getService", name);
+//        } catch (NoSuchMethodException e) {
+//            e.printStackTrace();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        }
+//        LogUtils.v(String.format("binder is %s", binder));
+//        try {
+//            IResponse.Stub.asInterface(binder).onResponse(4);
+//        } catch (RemoteException e) {
+//            e.printStackTrace();
+//        }
 
 //        Response response = new Response();
 //
