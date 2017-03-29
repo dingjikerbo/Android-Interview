@@ -35,11 +35,7 @@ public class BinderUtils {
     public static IBinder asBinder(Object object) {
         try {
             return (IBinder) MethodUtils.invokeMethod(object, "asBinder");
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (Throwable e) {
             e.printStackTrace();
         }
         return null;

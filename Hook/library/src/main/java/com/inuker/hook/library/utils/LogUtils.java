@@ -18,6 +18,10 @@ public class LogUtils {
         Log.v(TAG, msg);
     }
 
+    public static void w(String msg) {
+        Log.w(TAG, msg);
+    }
+
     public static void e(String msg) {
         Log.e(TAG, msg);
     }

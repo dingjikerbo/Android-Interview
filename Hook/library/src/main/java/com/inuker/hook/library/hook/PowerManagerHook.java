@@ -7,6 +7,7 @@ import android.os.PowerManager;
 import com.inuker.hook.library.compat.ServiceManagerCompat;
 import com.inuker.hook.library.utils.LogUtils;
 
+import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.apache.commons.lang3.reflect.MethodUtils;
 
@@ -22,12 +23,16 @@ public class PowerManagerHook {
 
     private static Context mContext;
 
-    public static void hook(Context context) throws IllegalAccessException {
-        mContext = context.getApplicationContext();
+    public static void hook(Context context) throws Throwable {
+        mContext = context;
 
         PowerManager manager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         Field field = FieldUtils.getField(PowerManager.class, "mService", true);
-        BinderHook hook = new BinderHook(field.get(manager), new BinderHook.BinderHookInvoker() {
+
+        // IPowerManager
+        Object mService = field.get(manager);
+
+        BinderHook hook = new BinderHook(mService, new BinderHook.BinderHookInvoker() {
             @Override
             public Object onInvoke(Object original, Method method, Object[] args) throws Throwable {
                 StringBuilder sb = new StringBuilder(String.format("%s(", method.getName()));
@@ -39,19 +44,11 @@ public class PowerManagerHook {
                         sb.append(")");
                     }
                 }
-                LogUtils.v(String.format("onInvoke %s", sb));
+                LogUtils.w(String.format("onInvoke %s", sb));
                 return method.invoke(original, args);
             }
         });
 
-
-        LogUtils.v(String.format("ss: %s", field.get(manager)));
-
-        LogUtils.v(String.format("uu: %s", hook.proxyInterface));
-
-        field.setAccessible(true);
         field.set(manager, hook.proxyInterface);
-
-        LogUtils.v(String.format("tt: %s", field.get(manager)));
     }
 }

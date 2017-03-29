@@ -28,19 +28,19 @@ public class ServiceManagerHook {
         Object sServiceManager = ServiceManagerCompat.getsServiceManager();
         sCache = (HashMap<String, IBinder>) ServiceManagerCompat.getsCache();
 
-        mHookedBinder = new BinderHook(sServiceManager, new BinderHook.BinderHookInvoker() {
-            @Override
-            public Object onInvoke(Object original, Method method, Object[] args) throws Throwable {
-                if (method.getName().equals("getService")) {
-                    String name = (String) args[0];
-                    BinderHook hookBinder = mCache.get(name);
-                    if (hookBinder != null) {
-                        return hookBinder.proxyBinder;
-                    }
-                }
-                return method.invoke(original, args);
-            }
-        });
+//        mHookedBinder = new BinderHook(sServiceManager, new BinderHook.BinderHookInvoker() {
+//            @Override
+//            public Object onInvoke(Object original, Method method, Object[] args) throws Throwable {
+//                if (method.getName().equals("getService")) {
+//                    String name = (String) args[0];
+//                    BinderHook hookBinder = mCache.get(name);
+//                    if (hookBinder != null) {
+//                        return hookBinder.proxyBinder;
+//                    }
+//                }
+//                return method.invoke(original, args);
+//            }
+//        });
 
         try {
             ServiceManagerCompat.getsServiceManagerField().set(null, mHookedBinder.proxyInterface);
