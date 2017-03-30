@@ -29,9 +29,6 @@ public class BinderHook {
 
     public IBinder proxyBinder;
 
-    /**
-     * IServiceManager sServiceManager;
-     */
     public BinderHook(Object object, BinderHookInvoker invoker) {
         this.originalInterface = object;
         LogUtils.v(String.format("originalInterface: %s", originalInterface));
@@ -59,29 +56,21 @@ public class BinderHook {
         return null;
     }
 
-    public IBinder getProxyBinder() {
-        if (proxyBinder == null) {
-            proxyBinder = (IBinder) Proxy.newProxyInstance(IBinder.class.getClassLoader(),
-                    new Class<?>[]{IBinder.class}, new BinderHookHandler(originalBinder, "Binder") {
-                        @Override
-                        public Object onInvoke(Object original, Method method, Object[] args) throws Throwable {
-                            if (method.getName().equals("queryLocalInterface")) {
-                                return proxyInterface;
-                            }
-                            return method.invoke(original, args);
+    private IBinder getProxyBinder() {
+        return (IBinder) Proxy.newProxyInstance(IBinder.class.getClassLoader(),
+                new Class<?>[]{IBinder.class}, new BinderHookHandler(originalBinder, "Binder") {
+                    @Override
+                    public Object onInvoke(Object original, Method method, Object[] args) throws Throwable {
+                        if (method.getName().equals("queryLocalInterface")) {
+                            return proxyInterface;
                         }
-                    });
-        }
-        return proxyBinder;
+                        return method.invoke(original, args);
+                    }
+                });
     }
 
-    Object getProxyInterface(final BinderHookInvoker invoker) {
-        if (proxyInterface != null) {
-            throw new IllegalStateException();
-        }
-
-        ClassLoader loader = originalInterface.getClass().getClassLoader();
-        proxyInterface = Proxy.newProxyInstance(loader,
+    private Object getProxyInterface(final BinderHookInvoker invoker) {
+        return Proxy.newProxyInstance(originalInterface.getClass().getClassLoader(),
                 ClassUtils.getAllInterfaces(originalInterface.getClass()).toArray(new Class<?>[0]),
                 new BinderHookHandler(originalInterface, "Interface") {
                     @Override
@@ -89,7 +78,6 @@ public class BinderHook {
                         return invoker.onInvoke(original, method, args);
                     }
                 });
-        return proxyInterface;
     }
 
     public interface BinderHookInvoker {
@@ -109,17 +97,15 @@ public class BinderHook {
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            if(Object.class  == method.getDeclaringClass()) {
+            if (Object.class == method.getDeclaringClass()) {
                 String name = method.getName();
-                if("equals".equals(name)) {
+                if ("equals".equals(name)) {
                     return proxy == args[0];
-                } else if("hashCode".equals(name)) {
+                } else if ("hashCode".equals(name)) {
                     return System.identityHashCode(proxy);
-                } else if("toString".equals(name)) {
+                } else if ("toString".equals(name)) {
                     return proxy.getClass().getName() + "@" +
-                            Integer.toHexString(System.identityHashCode(proxy))
-//                            + ", with InvocationHandler " + this
-                            ;
+                            Integer.toHexString(System.identityHashCode(proxy));
                 } else {
                     throw new IllegalStateException(String.valueOf(method));
                 }

@@ -4,17 +4,24 @@ import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattServerCallback;
 import android.bluetooth.BluetoothManager;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ReceiverCallNotAllowedException;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.RemoteException;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.View;
 
 import com.inuker.hook.library.compat.ServiceManagerCompat;
 import com.inuker.hook.library.hook.BinderHook;
 import com.inuker.hook.library.hook.PowerManagerHook;
+import com.inuker.hook.library.hook.ReceiverHook;
 import com.inuker.hook.library.hook.ServiceManagerHook;
 import com.inuker.hook.library.utils.LogUtils;
 
@@ -28,26 +35,22 @@ import java.util.HashMap;
 
 public class MainActivity extends Activity {
 
-    private void testPowerManager() throws Exception {
-        Class<?> clazz = Class.forName("android.os.IPowerManager");
-        Method method = MethodUtils.getAccessibleMethod(clazz, "asBinder");
-
-
-        PowerManager manager1 = (PowerManager) getSystemService(POWER_SERVICE);
-        Object object1 = FieldUtils.getField(PowerManager.class, "mService", true).get(manager1);
-        IBinder binder1 = (IBinder) method.invoke(object1);
-        LogUtils.v(String.format("manager1 = %s, object1 = %s, binder1 = %s", manager1, object1, binder1));
-
-        PowerManager manager2 = (PowerManager) getApplicationContext().getSystemService(POWER_SERVICE);
-        Object object2 = FieldUtils.getField(PowerManager.class, "mService", true).get(manager2);
-        IBinder binder2 = (IBinder) method.invoke(object2);
-        LogUtils.v(String.format("manager2 = %s, object2 = %s, binder2 = %s", manager2, object2, binder2));
-    }
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                LogUtils.e(String.format("onReceive: %s", intent.getAction()));
+            }
+        };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("hello");
+        registerReceiver(mReceiver, filter);
 
         findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
 
@@ -85,16 +88,18 @@ public class MainActivity extends Activity {
     }
 
     private void call() {
-        PowerManager manager = (PowerManager) getSystemService(POWER_SERVICE);
-        PowerManager.WakeLock lock = manager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "hello");
-        lock.acquire();
+        Intent intent = new Intent(this, TestActivity.class);
+        startActivity(intent);
+
+        Intent intent2 = new Intent("hello");
+        sendBroadcast(intent2);
     }
 
     private void hook() {
 //        ServiceManagerHook.hook();
 
         try {
-            PowerManagerHook.hook(this);
+            ReceiverHook.hook();
         } catch (Throwable e) {
             e.printStackTrace();
         }
