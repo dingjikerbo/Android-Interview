@@ -241,3 +241,6 @@ private final class BroadcastHandler extends Handler {
     }
 };
 ```
+
+静态广播由于是通过Message发到主线程的，所以可以被拦截。而动态广播是通过Runnable发到主线程的，暂时没找到拦截的办法。不过我们并不关心动态广播，因为
+自定义的广播我们没必要去拦截。我们需要拦截的主要是系统的唤醒广播。
