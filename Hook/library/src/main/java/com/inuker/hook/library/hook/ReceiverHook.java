@@ -1,21 +1,12 @@
 package com.inuker.hook.library.hook;
 
-import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 
 import com.inuker.hook.library.compat.ActivityThreadCompat;
 import com.inuker.hook.library.compat.HandlerCompat;
 import com.inuker.hook.library.utils.LogUtils;
-
-import org.apache.commons.lang3.ClassUtils;
-import org.apache.commons.lang3.reflect.FieldUtils;
-import org.apache.commons.lang3.reflect.MethodUtils;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * Created by liwentian on 2017/3/30.

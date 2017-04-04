@@ -26,11 +26,18 @@ public class HandlerCompat {
         return FieldUtils.getField(getHandlerClazz(), "mCallback", true);
     }
 
-    public static void setCallback(Object handler, Handler.Callback callback) {
+    public static Handler.Callback setCallback(Object handler, Handler.Callback callback) {
         try {
-            getCallbackField().set(handler, callback);
+            Field field = getCallbackField();
+
+            Handler.Callback old = (Handler.Callback) field.get(handler);
+
+            field.set(handler, callback);
+
+            return old;
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }

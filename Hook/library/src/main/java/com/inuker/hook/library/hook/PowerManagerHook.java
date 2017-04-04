@@ -1,18 +1,13 @@
 package com.inuker.hook.library.hook;
 
 import android.content.Context;
-import android.os.IBinder;
 import android.os.PowerManager;
 
-import com.inuker.hook.library.compat.ServiceManagerCompat;
 import com.inuker.hook.library.utils.LogUtils;
 
-import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.reflect.FieldUtils;
-import org.apache.commons.lang3.reflect.MethodUtils;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
