@@ -1,5 +1,5 @@
-Handler Hook
-
-Activity Hook
-
-Binder Hook
+ - Handler Hook
+ - Activity Hook
+ - Binder Hook
+  - PowerManagerHook
+  - BluetoothManagerHook
