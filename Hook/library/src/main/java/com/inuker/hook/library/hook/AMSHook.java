@@ -1,6 +1,8 @@
 package com.inuker.hook.library.hook;
 
 import com.inuker.hook.library.compat.AMSCompat;
+import com.inuker.hook.library.compat.ActivityThreadCompat;
+import com.inuker.hook.library.compat.HandlerCompat;
 import com.inuker.hook.library.utils.LogUtils;
 
 /**
@@ -15,6 +17,8 @@ public class AMSHook {
         Object object = AMSCompat.getIActivityManager();
         mHook = new BinderHook(object, invoker);
         AMSCompat.setIActivityManager(mHook.getProxyInterface());
+
+
     }
 
     public static void restore() {

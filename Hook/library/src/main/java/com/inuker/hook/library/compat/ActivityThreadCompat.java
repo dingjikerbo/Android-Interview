@@ -1,6 +1,7 @@
 package com.inuker.hook.library.compat;
 
 import android.content.Intent;
+import android.os.Handler;
 
 import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.reflect.FieldUtils;
@@ -39,9 +40,9 @@ public class ActivityThreadCompat {
         return FieldUtils.getField(getActivityThreadClazz(), "mH", true);
     }
 
-    public static Object getmH() {
+    public static Handler getmH() {
         try {
-            return getmHField().get(getActivityThread());
+            return (Handler) getmHField().get(getActivityThread());
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }

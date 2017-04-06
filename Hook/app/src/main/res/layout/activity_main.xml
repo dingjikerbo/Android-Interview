@@ -26,6 +26,7 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/hook"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Hook"
@@ -38,10 +39,12 @@
             android:onClick="call"/>
 
         <Button
+            android:id="@+id/restore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Restore"
-            android:onClick="restore"/>
+            android:onClick="restore"
+            android:enabled="false"/>
 
     </LinearLayout>
 
