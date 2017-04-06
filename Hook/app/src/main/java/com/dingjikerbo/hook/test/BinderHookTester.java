@@ -42,7 +42,7 @@ public class BinderHookTester extends HookTester {
         }
     };
 
-    private BinderHook mBinderHook;
+    private BinderHook<ICaller> mBinderHook;
 
     @Override
     public void hook() {

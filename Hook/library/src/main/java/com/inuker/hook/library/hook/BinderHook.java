@@ -16,23 +16,23 @@ import java.lang.reflect.Proxy;
  * Created by liwentian on 2017/3/24.
  */
 
-public class BinderHook {
+public class BinderHook<T> {
 
     public Class<?> binderIntfClazz;
 
-    public Object originalInterface;
+    public T originalInterface;
 
     public IBinder originalBinder;
 
-    public Object proxyInterface;
+    public T proxyInterface;
 
     public IBinder proxyBinder;
 
-    public BinderHook(Object object, BinderHookInvoker invoker) {
-        this.originalInterface = object;
+    public BinderHook(T originalInterface, BinderHookInvoker invoker) {
+        this.originalInterface = originalInterface;
         LogUtils.v(String.format("originalInterface: %s", originalInterface));
 
-        this.binderIntfClazz = BinderUtils.getBinderInterface(object);
+        this.binderIntfClazz = BinderUtils.getBinderInterface(originalInterface);
         LogUtils.v(String.format("binderIntfClazz: %s", binderIntfClazz));
 
         this.originalBinder = getOriginalBinder();
@@ -68,8 +68,8 @@ public class BinderHook {
                 });
     }
 
-    private Object getProxyInterface(final BinderHookInvoker invoker) {
-        return Proxy.newProxyInstance(originalInterface.getClass().getClassLoader(),
+    private T getProxyInterface(final BinderHookInvoker invoker) {
+        return (T) Proxy.newProxyInstance(binderIntfClazz.getClassLoader(),
                 ClassUtils.getAllInterfaces(originalInterface.getClass()).toArray(new Class<?>[0]),
                 new BinderHookHandler(originalInterface, "Interface") {
                     @Override
@@ -115,11 +115,11 @@ public class BinderHook {
         }
     }
 
-    public <T> T getProxyInterface() {
-        return (T) proxyInterface;
+    public T getProxyInterface() {
+        return proxyInterface;
     }
 
-    public <T> T getOriginalInterface() {
-        return (T) originalInterface;
+    public T getOriginalInterface() {
+        return originalInterface;
     }
 }
