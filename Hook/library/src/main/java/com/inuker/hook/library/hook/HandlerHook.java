@@ -16,7 +16,7 @@ public class HandlerHook {
     private static HashMap<Handler, Handler.Callback> mCache = new HashMap<>();
 
     public static void hook(Handler handler) {
-        boolean clean = mCache.containsKey(handler);
+        boolean hooked = mCache.containsKey(handler);
 
         Handler.Callback old = HandlerCompat.setCallback(handler, new Handler.Callback() {
             @Override
@@ -25,7 +25,7 @@ public class HandlerHook {
             }
         });
 
-        if (clean) {
+        if (!hooked) {
             mCache.put(handler, old);
         }
     }
