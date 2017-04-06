@@ -8,12 +8,12 @@ import android.widget.TextView;
  * Created by liwentian on 2017/3/30.
  */
 
-public class TestActivity extends Activity {
+public class GhostActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+        setContentView(R.layout.activity_ghost);
 
         String name = getIntent().getStringExtra("name");
 

@@ -18,6 +18,10 @@ public class ProxyBulk {
         this.args = args;
     }
 
+    public ProxyBulk(Method method, Object[] args) {
+        this(null, method, args);
+    }
+
     public Object safeInvoke() {
         Object result = null;
         try {
@@ -31,5 +35,19 @@ public class ProxyBulk {
 
     public static Object safeInvoke(Object obj) {
         return ((ProxyBulk) obj).safeInvoke();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder(String.format("%s(", method.getName()));
+        for (int i = 0; i < args.length; i++) {
+            sb.append(args[i]);
+            if (i != args.length - 1) {
+                sb.append(", ");
+            } else {
+                sb.append(")");
+            }
+        }
+        return sb.toString();
     }
 }

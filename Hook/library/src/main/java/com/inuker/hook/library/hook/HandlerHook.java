@@ -21,7 +21,8 @@ public class HandlerHook {
         Handler.Callback old = HandlerCompat.setCallback(handler, new Handler.Callback() {
             @Override
             public boolean handleMessage(Message msg) {
-                return true;
+                msg.obj = "world";
+                return false;
             }
         });
 

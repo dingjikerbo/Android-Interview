@@ -41,6 +41,7 @@
     <uses-permission android:name="android.permission.PEERS_MAC_ADDRESS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
     <!-- app upgrade -->
     <uses-permission android:name="com.xiaomi.market.sdk.UPDATE" />
 
@@ -70,7 +71,6 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name=".MyApplication"
         android:theme="@style/AppTheme" >
         <activity android:name=".MainActivity" >
             <intent-filter>
@@ -81,7 +81,7 @@
         </activity>
 
         <activity android:name=".TestActivity"/>
-
+        <activity android:name=".GhostActivity" />
         <service android:name=".MyService"
                  android:process=":service" />
 

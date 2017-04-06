@@ -3,6 +3,7 @@ package com.inuker.hook.library.hook;
 import android.content.Context;
 import android.os.PowerManager;
 
+import com.inuker.hook.library.compat.ServiceManagerCompat;
 import com.inuker.hook.library.utils.LogUtils;
 
 import org.apache.commons.lang3.reflect.FieldUtils;
@@ -18,32 +19,35 @@ public class PowerManagerHook {
 
     private static Context mContext;
 
-    public static void hook(Context context) throws Throwable {
+    private static PowerManager mPowerManager;
+    private static Field mField;
+
+    private static BinderHook mHook;
+
+    public static void hook(Context context, BinderHook.BinderHookInvoker invoker) {
         mContext = context;
 
-        PowerManager manager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
-        Field field = FieldUtils.getField(PowerManager.class, "mService", true);
+        if (mPowerManager != null) {
+            return;
+        }
 
-        // IPowerManager
-        Object mService = field.get(manager);
+        mPowerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
+        mField = FieldUtils.getField(PowerManager.class, "mService", true);
 
-        BinderHook hook = new BinderHook(mService, new BinderHook.BinderHookInvoker() {
-            @Override
-            public Object onInvoke(Object original, Method method, Object[] args) throws Throwable {
-                StringBuilder sb = new StringBuilder(String.format("%s(", method.getName()));
-                for (int i = 0; i < args.length; i++) {
-                    sb.append(args[i]);
-                    if (i != args.length - 1) {
-                        sb.append(", ");
-                    } else {
-                        sb.append(")");
-                    }
-                }
-                LogUtils.w(String.format("onInvoke %s", sb));
-                return method.invoke(original, args);
-            }
-        });
+        try {
+            mHook = new BinderHook(mField.get(mPowerManager), invoker);
+            mField.set(mPowerManager, mHook.proxyInterface);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
 
-        field.set(manager, hook.proxyInterface);
+    public static void restore() {
+        try {
+            mField.set(mPowerManager, mHook.originalInterface);
+            mPowerManager = null;
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 }

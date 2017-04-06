@@ -23,7 +23,7 @@ public class MainActivity extends Activity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mHookTester = HookTester.get(position);
+                mHookTester = HookTester.get(MainActivity.this, position);
             }
 
             @Override

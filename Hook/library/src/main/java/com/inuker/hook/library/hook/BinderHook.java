@@ -110,7 +110,7 @@ public class BinderHook<T> {
                 }
             }
 
-            LogUtils.w(String.format("Intercepted %s >>> %s", tag, method));
+            LogUtils.v(String.format("Intercepted %s >>> %s", tag, method));
             return onInvoke(originalObject, method, args);
         }
     }

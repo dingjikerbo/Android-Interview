@@ -16,7 +16,7 @@ public class HandlerHookTester extends HookTester {
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            Toast.makeText(context, "hello world!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "hello " + msg.obj, Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -31,7 +31,7 @@ public class HandlerHookTester extends HookTester {
 
     @Override
     public void call() {
-        mHandler.sendEmptyMessage(0);
+        mHandler.obtainMessage(0, "frank").sendToTarget();
     }
 
     @Override

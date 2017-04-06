@@ -4,5 +4,7 @@
     <string-array name="hook">
         <item>Handler</item>
         <item>Binder</item>
+        <item>PowerManager</item>
+        <item>Activity</item>
     </string-array>
 </resources>
