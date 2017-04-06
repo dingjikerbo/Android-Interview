@@ -14,7 +14,8 @@ public abstract class HookTester implements IHookTester {
     Context context;
 
     private static final HookTester[] TESTER = new HookTester[]{
-        new HandlerHookTester(MyApplication.getInstance()),
+            new HandlerHookTester(MyApplication.getInstance()),
+            new BinderHookTester(MyApplication.getInstance()),
     };
 
     public static HookTester get(int index) {

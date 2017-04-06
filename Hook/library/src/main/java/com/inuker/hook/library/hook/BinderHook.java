@@ -114,4 +114,12 @@ public class BinderHook {
             return onInvoke(originalObject, method, args);
         }
     }
+
+    public <T> T getProxyInterface() {
+        return (T) proxyInterface;
+    }
+
+    public <T> T getOriginalInterface() {
+        return (T) originalInterface;
+    }
 }

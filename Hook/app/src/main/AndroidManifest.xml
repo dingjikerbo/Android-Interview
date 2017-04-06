@@ -82,6 +82,9 @@
 
         <activity android:name=".TestActivity"/>
 
+        <service android:name=".MyService"
+                 android:process=":service" />
+
         <!--<receiver android:name=".MyReceiver">-->
             <!--<intent-filter>-->
                 <!--<action android:name="hello" />-->
