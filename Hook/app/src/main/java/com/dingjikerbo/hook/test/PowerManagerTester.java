@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.inuker.hook.library.hook.BinderHook;
 import com.inuker.hook.library.hook.PowerManagerHook;
+
 import java.lang.reflect.Method;
 
 /**

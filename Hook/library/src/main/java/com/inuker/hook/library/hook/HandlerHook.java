@@ -1,7 +1,6 @@
 package com.inuker.hook.library.hook;
 
 import android.os.Handler;
-import android.os.Message;
 
 import com.inuker.hook.library.compat.HandlerCompat;
 

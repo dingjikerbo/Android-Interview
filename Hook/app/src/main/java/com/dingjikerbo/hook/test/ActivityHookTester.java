@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 
-import com.dingjikerbo.hook.TestActivity1;
-import com.dingjikerbo.hook.TestActivity2;
-import com.dingjikerbo.hook.TestActivity3;
+import com.dingjikerbo.hook.ui.TestActivity1;
+import com.dingjikerbo.hook.ui.TestActivity2;
+import com.dingjikerbo.hook.ui.TestActivity3;
 import com.inuker.hook.library.compat.ActivityThreadCompat;
 import com.inuker.hook.library.hook.AMSHook;
 import com.inuker.hook.library.hook.ActivityThreadHook;

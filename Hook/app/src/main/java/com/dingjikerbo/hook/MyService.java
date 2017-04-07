@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
-import android.widget.Toast;
-
-import com.inuker.hook.library.utils.LogUtils;
 
 /**
  * Created by workstation on 17/4/6.

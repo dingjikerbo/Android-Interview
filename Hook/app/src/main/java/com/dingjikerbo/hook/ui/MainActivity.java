@@ -1,4 +1,4 @@
-package com.dingjikerbo.hook;
+package com.dingjikerbo.hook.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.dingjikerbo.hook.R;
 import com.dingjikerbo.hook.test.HookTester;
 import com.dingjikerbo.hook.test.IHookTester;
 

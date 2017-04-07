@@ -1,8 +1,10 @@
-package com.dingjikerbo.hook;
+package com.dingjikerbo.hook.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.dingjikerbo.hook.R;
 
 /**
  * Created by liwentian on 2017/3/30.

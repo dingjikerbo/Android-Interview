@@ -1,11 +1,6 @@
 package com.inuker.hook.library.hook;
 
-import android.content.Context;
-
 import com.inuker.hook.library.compat.AMSCompat;
-import com.inuker.hook.library.compat.ActivityThreadCompat;
-import com.inuker.hook.library.compat.HandlerCompat;
-import com.inuker.hook.library.utils.LogUtils;
 
 /**
  * Created by workstation on 17/4/7.

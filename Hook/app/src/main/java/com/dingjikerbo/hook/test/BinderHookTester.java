@@ -20,6 +20,8 @@ import java.lang.reflect.Method;
 
 public class BinderHookTester extends HookTester {
 
+    private BinderHook<ICaller> mBinderHook;
+
     private ICaller mCaller;
 
     BinderHookTester(Context context) {
@@ -42,17 +44,16 @@ public class BinderHookTester extends HookTester {
         }
     };
 
-    private BinderHook<ICaller> mBinderHook;
+    private final BinderHook.BinderHookInvoker mInvoker = new BinderHook.BinderHookInvoker() {
+        @Override
+        public Object onInvoke(Object original, Method method, Object[] args) throws Throwable {
+            return "hello world!";
+        }
+    };
 
     @Override
     public void hook() {
-        mBinderHook = new BinderHook(mCaller, new BinderHook.BinderHookInvoker() {
-            @Override
-            public Object onInvoke(Object original, Method method, Object[] args) throws Throwable {
-                return "hello world!";
-            }
-        });
-
+        mBinderHook = new BinderHook(mBinderHook, mInvoker);
         mCaller = mBinderHook.getProxyInterface();
     }
 
