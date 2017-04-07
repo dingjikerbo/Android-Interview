@@ -55,9 +55,7 @@ ActivityRecord(......) {
 
 ```
 
-这个appToken是ActivityRecord中的token，看注释是说WindowManager的token。
-
-来看看Token的定义，这是个Binder实体类，可以跨进程传输，里面只是保存了ActivityRecord的弱引用。
+这个Token是Binder实体类，可以跨进程传输，里面只是保存了ActivityRecord的弱引用。
 
 ```
 static class Token extends IApplicationToken.Stub {
