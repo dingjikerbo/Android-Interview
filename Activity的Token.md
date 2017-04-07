@@ -1,8 +1,8 @@
 ActivityThread和AMS交互是通过token来的，这是个Binder。
 
 我们要了解以下几个问题：
-1、token是哪里生成的
-2、token是什么时候赋给Activity的
+ - token是哪里生成的
+ - token是什么时候赋给Activity的
 
 我们先从ActivityThread开始，看看token是在哪里生成的：
 

@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b29a498f-e9ee-4f37-8c36-b9d4f77ae734" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/markdown-navigator.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/markdown-navigator/profiles_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Activity的Token.md" afterPath="$PROJECT_DIR$/Activity的Token.md" />
     </list>
     <ignored path="TechReports.iws" />
@@ -39,8 +35,8 @@
           </provider>
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="3553">
-                <caret line="187" column="3" selection-start-line="187" selection-start-column="3" selection-end-line="187" selection-end-column="3" />
+              <first_editor relative-caret-position="76">
+                <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
                 <folding />
               </first_editor>
               <second_editor>
@@ -588,8 +584,8 @@
       </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="3553">
-            <caret line="187" column="3" selection-start-line="187" selection-start-column="3" selection-end-line="187" selection-end-column="3" />
+          <first_editor relative-caret-position="76">
+            <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
             <folding />
           </first_editor>
           <second_editor>
