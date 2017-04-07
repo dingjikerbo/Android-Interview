@@ -68,12 +68,11 @@ static class Token extends IApplicationToken.Stub {
 ```
 
 
-Activity中的mToken是在ActivityThread.attach中设置的，对应的是ActivityClientRecord中的token，这是在ActivityThread的scheduleLaunchActivity中设置的。
-ActivityRecord是AMS中的，而ActivityClientRecord是ActivityThread中的。
+Activity中的mToken是在ActivityThread的performLaunchActivity中attach的，对应的是ActivityClientRecord中的token，这是在ActivityThread的scheduleLaunchActivity中设置的。ActivityRecord是AMS中的，而ActivityClientRecord是ActivityThread中的。
 
 ```
  @Override
-public final void scheduleLaunchActivity(......) {
+public final void scheduleLaunchActivity(IBinder token, ......) {
 
     ActivityClientRecord r = new ActivityClientRecord();
 
@@ -102,15 +101,14 @@ public final void scheduleLaunchActivity(......) {
 }
 ```
 
-scheduleLaunchActivity是在ActivityStackSupervisor的realStartActivityLocked中调的，此时还在AMS中：
+scheduleLaunchActivity是在ActivityStackSupervisor的realStartActivityLocked中调的，此时还在AMS中，这个scheduleLaunchActivity是IApplicationThread
+的接口函数，实现位于ActivityThread中，传输到AMS中。作为双向通信算是齐了，APP进程调到AMS用IActivityManager，而AMS调到APP进程用IApplicationThread，想必
+这是APP进程启动时注册到AMS中的。下面的这个app.thread就是APP进程传到AMS的IApplicationThread句柄。所传的token就是AMS中ActivityRecord的appToken。
 
 ```
-app.thread.scheduleLaunchActivity(......);
+app.thread.scheduleLaunchActivity(token, ......);
 
 ```
-
-这里app.thread是ApplicationThread，是ActivityThread的内部类，并且在ActivityThread中new了一个，并传入AMS中。
-传的token是ActivityRecord的appToken，在ActivityThread的performLaunchActivity中attach到Activity的token。
 
 
 再来看Activity的finish，
