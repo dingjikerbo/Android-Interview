@@ -80,8 +80,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".TestActivity"/>
-        <activity android:name=".GhostActivity" />
+        <activity android:name=".TestActivity1"/>
+        <activity android:name=".TestActivity2" />
         <service android:name=".MyService"
                  android:process=":service" />
 

@@ -15,6 +15,9 @@ public class TestActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
+        TextView tvTitle = (TextView) findViewById(R.id.title);
+        tvTitle.setText(getClass().getSimpleName());
+
         String name = getIntent().getStringExtra("name");
 
         TextView tvName = (TextView) findViewById(R.id.name);

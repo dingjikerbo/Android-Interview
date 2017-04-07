@@ -26,7 +26,13 @@ public class HandlerHookTester extends HookTester {
 
     @Override
     public void hook() {
-        HandlerHook.hook(mHandler);
+        HandlerHook.hook(mHandler, new Handler.Callback() {
+            @Override
+            public boolean handleMessage(Message msg) {
+                msg.obj = "world";
+                return false;
+            }
+        });
     }
 
     @Override
@@ -36,6 +42,6 @@ public class HandlerHookTester extends HookTester {
 
     @Override
     public void restore() {
-        HandlerHook.recover(mHandler);
+        HandlerHook.restore(mHandler);
     }
 }

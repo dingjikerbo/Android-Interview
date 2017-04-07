@@ -1,5 +1,7 @@
 package com.inuker.hook.library.hook;
 
+import android.content.Context;
+
 import com.inuker.hook.library.compat.AMSCompat;
 import com.inuker.hook.library.compat.ActivityThreadCompat;
 import com.inuker.hook.library.compat.HandlerCompat;
@@ -17,8 +19,6 @@ public class AMSHook {
         Object object = AMSCompat.getIActivityManager();
         mHook = new BinderHook(object, invoker);
         AMSCompat.setIActivityManager(mHook.getProxyInterface());
-
-
     }
 
     public static void restore() {

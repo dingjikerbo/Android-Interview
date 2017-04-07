@@ -12,6 +12,13 @@
     tools:context="com.dingjikerbo.hook.MainActivity">
 
     <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

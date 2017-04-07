@@ -15,33 +15,16 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 
 public class ActivityThreadHook {
 
+    public static final int MSG_LAUNCH_ACTIVITY = 100;
+
     private static Handler mH;
 
-    public static void hook() {
+    public static void hookMH(Handler.Callback callback) {
         mH = ActivityThreadCompat.getmH();
-
-        HandlerHook.hook(mH, new Handler.Callback() {
-            @Override
-            public boolean handleMessage(Message msg) {
-                switch (msg.what) {
-                    case 100:
-                        performLaunchActivity(msg.obj);
-                        break;
-                }
-                return false;
-            }
-        });
+        HandlerHook.hook(mH, callback);
     }
 
-    private static void performLaunchActivity(Object r) {
-        try {
-            Intent intent = (Intent) FieldUtils.getField(r.getClass(), "intent", true).get(r);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void restore() {
+    public static void restoreMH() {
         HandlerHook.restore(mH);
     }
 

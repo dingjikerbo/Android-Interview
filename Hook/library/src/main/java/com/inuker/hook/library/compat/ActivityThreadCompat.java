@@ -49,6 +49,15 @@ public class ActivityThreadCompat {
         return null;
     }
 
+    public static Intent getActivityClientRecordIntent(Object record) {
+        try {
+            return (Intent) FieldUtils.getField(record.getClass(), "intent", true).get(record);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static Object getActivityThread() {
         try {
             return MethodUtils.invokeStaticMethod(getActivityThreadClazz(), "currentActivityThread");
