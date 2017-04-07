@@ -8,9 +8,7 @@ ActivityThread和AMS交互是通过token来的，这是个Binder。
 
 首先以startActivity为入口，辗转调到了Instrumentation：
 ```
-public ActivityResult execStartActivity(
-        Context who, IBinder contextThread, IBinder token, Activity target,
-        Intent intent, int requestCode, Bundle options) {
+public ActivityResult execStartActivity(......) {
     IApplicationThread whoThread = (IApplicationThread) contextThread;
     
     ...... 
