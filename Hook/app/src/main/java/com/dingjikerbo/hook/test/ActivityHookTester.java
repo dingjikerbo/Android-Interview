@@ -1,13 +1,12 @@
 package com.dingjikerbo.hook.test;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 
-import com.dingjikerbo.hook.TestActivity2;
 import com.dingjikerbo.hook.TestActivity1;
+import com.dingjikerbo.hook.TestActivity2;
 import com.dingjikerbo.hook.TestActivity3;
 import com.inuker.hook.library.compat.ActivityThreadCompat;
 import com.inuker.hook.library.hook.AMSHook;
