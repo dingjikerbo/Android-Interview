@@ -77,25 +77,8 @@ public final void scheduleLaunchActivity(IBinder token, ......) {
     ActivityClientRecord r = new ActivityClientRecord();
 
     r.token = token;
-    r.ident = ident;
-    r.intent = intent;
-    r.referrer = referrer;
-    r.voiceInteractor = voiceInteractor;
-    r.activityInfo = info;
-    r.compatInfo = compatInfo;
-    r.state = state;
-    r.persistentState = persistentState;
-
-    r.pendingResults = pendingResults;
-    r.pendingIntents = pendingNewIntents;
-
-    r.startsNotResumed = notResumed;
-    r.isForward = isForward;
-
-    r.profilerInfo = profilerInfo;
-
-    r.overrideConfig = overrideConfig;
-    updatePendingConfiguration(curConfig);
+    
+    ......
 
     sendMessage(H.LAUNCH_ACTIVITY, r);
 }
