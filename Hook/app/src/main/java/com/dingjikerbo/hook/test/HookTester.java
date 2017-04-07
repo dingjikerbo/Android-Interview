@@ -15,7 +15,7 @@ public abstract class HookTester implements IHookTester {
     private static final Class[] TESTER = new Class[]{
             HandlerHookTester.class,
             BinderHookTester.class,
-            PowerManagerTester.class,
+            PowerManagerHookTester.class,
             ActivityHookTester.class
     };
 

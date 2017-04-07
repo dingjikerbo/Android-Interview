@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
 
+import com.dingjikerbo.hook.utils.ToastUtils;
 import com.inuker.hook.library.hook.HandlerHook;
 
 /**
@@ -16,7 +17,7 @@ public class HandlerHookTester extends HookTester {
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            Toast.makeText(context, "hello " + msg.obj, Toast.LENGTH_SHORT).show();
+            ToastUtils.show("hello " + msg.obj);
         }
     };
 

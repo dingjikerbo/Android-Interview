@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.PowerManager;
 import android.widget.Toast;
 
+import com.dingjikerbo.hook.utils.ToastUtils;
 import com.inuker.hook.library.hook.BinderHook;
 import com.inuker.hook.library.hook.PowerManagerHook;
 
@@ -13,9 +14,9 @@ import java.lang.reflect.Method;
  * Created by workstation on 17/4/6.
  */
 
-public class PowerManagerTester extends HookTester {
+public class PowerManagerHookTester extends HookTester {
 
-    PowerManagerTester(Context context) {
+    PowerManagerHookTester(Context context) {
         super(context);
     }
 
@@ -24,7 +25,7 @@ public class PowerManagerTester extends HookTester {
         PowerManagerHook.hook(context, new BinderHook.BinderHookInvoker() {
             @Override
             public Object onInvoke(Object original, Method method, Object[] args) throws Throwable {
-                Toast.makeText(context, method.getName(), Toast.LENGTH_SHORT).show();
+                ToastUtils.show(method.getName());
                 return null;
             }
         });

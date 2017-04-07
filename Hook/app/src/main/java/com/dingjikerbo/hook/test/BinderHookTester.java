@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.dingjikerbo.hook.ICaller;
 import com.dingjikerbo.hook.MyService;
+import com.dingjikerbo.hook.utils.ToastUtils;
 import com.inuker.hook.library.hook.BinderHook;
 
 import java.lang.reflect.Method;
@@ -53,14 +54,14 @@ public class BinderHookTester extends HookTester {
 
     @Override
     public void hook() {
-        mBinderHook = new BinderHook(mBinderHook, mInvoker);
+        mBinderHook = new BinderHook(mCaller, mInvoker);
         mCaller = mBinderHook.getProxyInterface();
     }
 
     @Override
     public void call() {
         try {
-            Toast.makeText(context, mCaller.sayHi("frank"), Toast.LENGTH_SHORT).show();
+            ToastUtils.show(mCaller.sayHi("frank"));
         } catch (RemoteException e) {
             e.printStackTrace();
         }
