@@ -10,6 +10,7 @@ import android.widget.Spinner;
 import com.dingjikerbo.hook.R;
 import com.dingjikerbo.hook.test.HookTester;
 import com.dingjikerbo.hook.test.IHookTester;
+import com.inuker.hook.library.utils.LogUtils;
 
 
 public class MainActivity extends Activity {
@@ -31,10 +32,12 @@ public class MainActivity extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 mHookTester = HookTester.get(MainActivity.this, position);
+                LogUtils.v(String.format("onItemSelected index = %d, %s", position, mHookTester));
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                LogUtils.v(String.format("onNothingSelected"));
                 mHookTester = null;
             }
         });

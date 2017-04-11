@@ -2,6 +2,8 @@
     <string name="app_name">Hook</string>
 
     <string-array name="hook">
+        <item>Network</item>
+        <item>HttpUrlConnection</item>
         <item>Handler</item>
         <item>Binder</item>
         <item>PowerManager</item>

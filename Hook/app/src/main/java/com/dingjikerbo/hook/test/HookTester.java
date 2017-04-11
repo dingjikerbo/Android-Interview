@@ -13,10 +13,12 @@ public abstract class HookTester implements IHookTester {
     Context context;
 
     private static final Class[] TESTER = new Class[]{
+            NetworkHookTester.class,
+            HttpUrlConnectionHookTester.class,
             HandlerHookTester.class,
             BinderHookTester.class,
             PowerManagerHookTester.class,
-            ActivityHookTester.class
+            ActivityHookTester.class,
     };
 
     public static HookTester get(Context context, int index) {

@@ -26,5 +26,6 @@ dependencies {
     })
     testCompile 'junit:junit:4.12'
     compile 'org.apache.commons:commons-lang3:3.5'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
     compile project(':library')
 }
