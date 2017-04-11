@@ -45,23 +45,46 @@ public class Unsafe {
     }
 
     public static Method arrayBaseOffset() {
-        return getMethod("arrayBaseOffset");
+        return getMethod("arrayBaseOffset", Class.class);
     }
 
-    public static Method addressSize() {
-        Method method = null;
-        try {
-            method = getUnsafeClazz().getDeclaredMethod("arrayBaseOffset", Class.class);
-            method.setAccessible(true);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-        return method;
+    public static Method arrayIndexScale() {
+        return getMethod("arrayIndexScale", Class.class);
+    }
+
+    public static Method objectFieldOffset() {
+        return getMethod("objectFieldOffset", Field.class);
+    }
+
+    public static Method getInt() {
+        return getMethod("getInt", Object.class, long.class);
+    }
+
+    public static Method getLong() {
+        return getMethod("getLong", Object.class, long.class);
     }
 
     public static long getObjectAddress(Object object) {
-        Method method = arrayBaseOffset();
-        Object[] objects = {object};
+        try {
+            Object[] objects = { object };
+            Object unsafe = getUnsafeInstance();
+            int baseOffset = (int) arrayBaseOffset().invoke(unsafe, Object[].class);
+            int arrayIndexScale = (int) arrayIndexScale().invoke(unsafe, Object[].class);
+            Method getAddrMethod = null;
+            switch (arrayIndexScale) {
+                case 4:
+                    getAddrMethod = getInt();
+                    break;
+                case 8:
+                    getAddrMethod = getLong();
+                    break;
+                default:
+                    throw new UnsupportedOperationException();
+            }
+            return ((Number) getAddrMethod.invoke(unsafe, objects, baseOffset)).longValue();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 }
