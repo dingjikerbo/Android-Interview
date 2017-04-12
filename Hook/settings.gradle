@@ -1,1 +1,1 @@
-include ':app', ':library', ':testj'
+include ':app', ':library', ':testj', ':epic-debug'

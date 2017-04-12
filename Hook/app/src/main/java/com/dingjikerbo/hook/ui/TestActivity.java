@@ -2,14 +2,16 @@ package com.dingjikerbo.hook.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dingjikerbo.hook.R;
-import com.inuker.hook.library.compat.Unsafe;
+import com.inuker.hook.library.compat.MethodCompat;
+import com.inuker.hook.library.hook.MethodHook;
 import com.inuker.hook.library.utils.LogUtils;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * Created by liwentian on 2017/3/30.
@@ -30,32 +32,42 @@ public class TestActivity extends Activity {
         TextView tvName = (TextView) findViewById(R.id.name);
         tvName.setText("hello " + name);
 
-        Man man = new Man();
-        man.age = 10;
-        man.name = "frank";
+        LogUtils.v(String.format("getArt %d", MethodCompat.getArtMethodSize()));
 
-        LogUtils.v(String.format("man = %s, 0x%X", man, Unsafe.getObjectAddress(man)));
+        Method[] methods = TestActivity.class.getDeclaredMethods();
+        for (Method method : methods) {
+            LogUtils.v(String.format(">>> %s", method));
+        }
 
         try {
-            Field field = Man.class.getField("age");
-            long offset = (long) Unsafe.objectFieldOffset().invoke(Unsafe.getUnsafeInstance(), field);
-            LogUtils.v(String.format("offset = %d", offset));
-
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+            Method helloWorld = TestActivity.class.getDeclaredMethod("helloWorld");
+            Method helloFrank = TestActivity.class.getDeclaredMethod("helloFrank");
+            MethodHook.hook(helloFrank, helloWorld);
+        } catch (Throwable e) {
             e.printStackTrace();
         }
 
-        Memory.
 
+        Method[] methods2 = TestActivity.class.getDeclaredMethods();
+        for (Method method : methods2) {
+            LogUtils.v(String.format(">>> %s", method.getName()));
+        }
+
+        tvName.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                helloFrank();
+            }
+        });
     }
 
-    private static class Man {
-        public String name;
-
-        public int age;
+    private void helloFrank() {
+        Toast.makeText(this, "hello frank", Toast.LENGTH_SHORT).show();
     }
+
+    private void helloWorld() {
+        Toast.makeText(this, "hello world", Toast.LENGTH_SHORT).show();
+    }
+
 }

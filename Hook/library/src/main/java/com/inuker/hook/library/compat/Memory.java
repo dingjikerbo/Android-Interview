@@ -36,6 +36,10 @@ public class Memory {
         return getMethod("pokeByte", long.class, byte.class);
     }
 
+    private static Method pokeByteArray() {
+        return getMethod("pokeByteArray", long.class, byte[].class, int.class, int.class);
+    }
+
     public static byte peekByte(long address) {
         try {
             return (byte) peekByte().invoke(null, address);
@@ -50,6 +54,22 @@ public class Memory {
             pokeByte().invoke(null, address, value);
         } catch (Throwable e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void pokeByteArray(long address, byte[] src, int offset, int count) {
+        try {
+            pokeByteArray().invoke(null, address, src, offset, count);
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void memcpy(long dst, long src, long length) {
+        for (long i = 0; i < length; i++) {
+            pokeByte(dst, peekByte(src));
+            dst++;
+            src++;
         }
     }
 }

@@ -73,7 +73,7 @@
         android:supportsRtl="true"
         android:name=".MyApplication"
         android:theme="@style/AppTheme" >
-        <activity android:name=".ui.MainActivity" >
+        <activity android:name=".ui.TestActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
