@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b29a498f-e9ee-4f37-8c36-b9d4f77ae734" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Hook/epic-debug/epic-debug.aar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/函数调用过程.md" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hook/library/src/androidTest/java/com/inuker/hook/library/ExampleInstrumentedTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hook/library/src/test/java/com/inuker/hook/library/ExampleUnitTest.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hook/.idea/gradle.xml" afterPath="$PROJECT_DIR$/Hook/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hook/.idea/modules.xml" afterPath="$PROJECT_DIR$/Hook/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hook/app/build.gradle" afterPath="$PROJECT_DIR$/Hook/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hook/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/Hook/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hook/app/src/main/java/com/dingjikerbo/hook/MyService.java" afterPath="$PROJECT_DIR$/Hook/app/src/main/java/com/dingjikerbo/hook/MyService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hook/.idea/misc.xml" afterPath="$PROJECT_DIR$/Hook/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hook/app/src/main/java/com/dingjikerbo/hook/ui/TestActivity.java" afterPath="$PROJECT_DIR$/Hook/app/src/main/java/com/dingjikerbo/hook/ui/TestActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hook/library/build.gradle" afterPath="$PROJECT_DIR$/Hook/library/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hook/library/src/main/java/com/inuker/hook/library/compat/Memory.java" afterPath="$PROJECT_DIR$/Hook/library/src/main/java/com/inuker/hook/library/compat/Memory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hook/settings.gradle" afterPath="$PROJECT_DIR$/Hook/settings.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hook/library/src/main/java/com/inuker/hook/library/hook/MethodHook.java" afterPath="$PROJECT_DIR$/Hook/library/src/main/java/com/inuker/hook/library/hook/MethodHook.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/待研究内容.md" afterPath="$PROJECT_DIR$/待研究内容.md" />
     </list>
     <ignored path="TechReports.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,36 +49,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="待研究内容.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="待研究内容.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/待研究内容.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="38">
-                <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-          <provider editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="0">
-                <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                <folding />
-              </first_editor>
-              <second_editor>
-                <js_state />
-              </second_editor>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="函数调用过程.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/函数调用过程.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="FIRST">
-              <first_editor relative-caret-position="167">
-                <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+              <first_editor relative-caret-position="190">
+                <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -125,8 +91,8 @@
         <option value="$PROJECT_DIR$/Activity的Token.md" />
         <option value="$PROJECT_DIR$/关于改变service的回调所在线程.md" />
         <option value="$PROJECT_DIR$/Method Hook.md" />
-        <option value="$PROJECT_DIR$/待研究内容.md" />
         <option value="$PROJECT_DIR$/函数调用过程.md" />
+        <option value="$PROJECT_DIR$/待研究内容.md" />
       </list>
     </option>
   </component>
@@ -207,6 +173,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/workstation/Android/workspace/TechReports/函数调用过程.md" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -611,6 +578,72 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/待研究内容.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="38">
+            <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor>
+            <js_state />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/函数调用过程.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor>
+            <js_state />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Method Hook.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="35" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor>
+            <js_state />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/待研究内容.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="0">
             <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -832,28 +865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/待研究内容.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="38">
-            <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor>
-            <js_state />
-          </second_editor>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Method Hook.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
@@ -879,8 +890,30 @@
     <entry file="file://$PROJECT_DIR$/函数调用过程.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="167">
+          <first_editor relative-caret-position="148">
             <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor>
+            <js_state />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/待研究内容.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="190">
+            <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
             <folding />
           </first_editor>
           <second_editor />

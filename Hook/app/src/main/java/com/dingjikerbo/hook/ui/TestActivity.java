@@ -7,7 +7,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dingjikerbo.hook.R;
-import com.inuker.hook.library.compat.MethodCompat;
 import com.inuker.hook.library.hook.MethodHook;
 import com.inuker.hook.library.utils.LogUtils;
 
@@ -31,8 +30,6 @@ public class TestActivity extends Activity {
 
         TextView tvName = (TextView) findViewById(R.id.name);
         tvName.setText("hello " + name);
-
-        LogUtils.v(String.format("getArt %d", MethodCompat.getArtMethodSize()));
 
         Method[] methods = TestActivity.class.getDeclaredMethods();
         for (Method method : methods) {
@@ -62,7 +59,7 @@ public class TestActivity extends Activity {
         });
     }
 
-    private void helloFrank() {
+    private void helloFrank(String name) {
         Toast.makeText(this, "hello frank", Toast.LENGTH_SHORT).show();
     }
 
