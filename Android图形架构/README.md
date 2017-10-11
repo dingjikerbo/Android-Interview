@@ -1,0 +1,2 @@
+ - 阅读Android Camera源码，搞清楚整体流程架构
+ - 阅读Android Surface相关源码，搞清楚流程架构

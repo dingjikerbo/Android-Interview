@@ -1,0 +1,3 @@
+ - Android端OpenCV
+ - 熟悉CNN
+ - 熟悉TensorFlow
