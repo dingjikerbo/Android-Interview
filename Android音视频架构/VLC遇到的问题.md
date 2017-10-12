@@ -43,10 +43,10 @@ void createPlayer(String url, int width, int height) {
 }
 
 public void releasePlayer() {
-	mMediaPlayer.setVideoCallback(null, null);
+    mMediaPlayer.setVideoCallback(null, null);
     mMediaPlayer.stop();
-	IVLCVout vout = mMediaPlayer.getVLCVout();
-	vout.detachViews();
+    IVLCVout vout = mMediaPlayer.getVLCVout();
+    vout.detachViews();
     mVlc.release();
     mVlc = null;
 }
