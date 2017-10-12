@@ -25,12 +25,12 @@ void createPlayer(String url, int width, int height) {
     mVlc = new LibVLC(context, options);
 
     mMediaPlayer = new MediaPlayer(mVlc);
-	IVLCVout vout = mMediaPlayer.getVLCVout();
-	vout.setVideoView(textureView);
-	vout.attachViews();
-
-	vout.setWindowSize(width, height);
-
+    IVLCVout vout = mMediaPlayer.getVLCVout();
+    vout.setVideoView(textureView);
+    vout.attachViews();
+    
+    vout.setWindowSize(width, height);
+    
     Media m = new Media(mVlc, Uri.parse(url));
     int cache = 1000;
     m.addOption(":network-caching=" + cache);
