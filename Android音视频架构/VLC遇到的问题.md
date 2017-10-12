@@ -71,7 +71,7 @@ public void releasePlayer() {
 综上，解决一切问题的核心就是拿到视频流。网上关于截屏和视频录制的方案都是抄来抄去的，VLC的native层本来是有截屏和视频录制功能的，只是没开放给Java层，所以自己加几行代码开放出来重新编译一下就OK了。但是仍然没解决根本问题：拿到视频流。
 
 
-为了解决这个问题，我们只能翻vlc的代码。首先给vlc-android的代码同步下来，然后编译一遍，建议在linux下编，过程中会遇到各种各样的问题，google并解决之。编译完后会在libvlc目录下生成一堆so文件，包括jni目录中的libc++_shared.so, libvlc.so, libvlcjni.so，还有private_libs目录中的libiomx.*.so和libanw.*.xo，另外还会output一个aar文件，我们直接用这个aar文件就好了，里面已经给so都打包了。
+为了解决这个问题，我们只能翻vlc的代码。首先给vlc-android的代码同步下来，然后编译一遍，建议在linux下编，过程中会遇到各种各样的问题，google并解决之。编译完后会在libvlc目录下生成一堆so文件，包括jni目录中的libc++_shared.so, libvlc.so, libvlcjni.so，还有private_libs目录中的libiomx.so和libanw.xo，另外还会output一个aar文件，我们直接用这个aar文件就好了，里面已经给so都打包了。
 
 
 接下来正式看vlc的代码了，libvlc是重点，这个相当于一个中间层，是封装了给Android端用的。里面最终还是调用底层的vlc框架，我们就不用关注了。libvlc里有两个文件是重点，一个是libvlcjni.c，一个是libvlcjni-mediaplayer.c。

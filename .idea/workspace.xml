@@ -38,9 +38,9 @@
       <file leaf-file-name="VLC遇到的问题.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Android音视频架构/VLC遇到的问题.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="204">
-                <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="255">
+                <caret line="73" column="196" selection-start-line="73" selection-start-column="196" selection-end-line="73" selection-end-column="196" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -681,9 +681,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Android音视频架构/VLC遇到的问题.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="204">
-            <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="255">
+            <caret line="73" column="196" selection-start-line="73" selection-start-column="196" selection-end-line="73" selection-end-column="196" />
             <folding />
           </first_editor>
           <second_editor />
