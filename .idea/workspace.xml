@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b29a498f-e9ee-4f37-8c36-b9d4f77ae734" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Android音视频架构/README.md" afterPath="$PROJECT_DIR$/Android音视频架构/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Android音视频架构/VLC遇到的问题.md" afterPath="$PROJECT_DIR$/Android音视频架构/VLC遇到的问题.md" />
     </list>
     <ignored path="TechReports.iws" />
@@ -22,12 +23,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Android音视频架构/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="51">
-                <caret line="3" column="11" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
+              <first_editor relative-caret-position="102">
+                <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -35,12 +36,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VLC遇到的问题.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VLC遇到的问题.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Android音视频架构/VLC遇到的问题.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="136">
-                <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+              <first_editor relative-caret-position="0">
+                <caret line="0" column="19" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="19" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -69,6 +70,7 @@
         <option value="$PROJECT_DIR$/函数调用过程.md" />
         <option value="$PROJECT_DIR$/待研究内容.md" />
         <option value="$PROJECT_DIR$/Android音视频架构/VLC遇到的问题.md" />
+        <option value="$PROJECT_DIR$/Android音视频架构/README.md" />
       </list>
     </option>
   </component>
@@ -667,22 +669,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Android音视频架构/README.md">
+    <entry file="file://$PROJECT_DIR$/Android音视频架构/VLC遇到的问题.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="51">
-            <caret line="3" column="11" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="19" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="19" />
             <folding />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Android音视频架构/VLC遇到的问题.md">
+    <entry file="file://$PROJECT_DIR$/Android音视频架构/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="136">
-            <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+          <first_editor relative-caret-position="102">
+            <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
             <folding />
           </first_editor>
           <second_editor />
