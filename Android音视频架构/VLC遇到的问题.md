@@ -220,4 +220,17 @@ public interface MediaPlayCallback {
 }
 ```
 
-这个视频流是RGBA的，我们可以用OpenGL来渲染。剩下的代码我就不贴了
+这个视频流是RGBA的，我们可以用OpenGL来渲染。如果直接转成Bitmap再显示性能就堪忧了。
+
+------
+
+接下来再来说说以上jni中要注意的一些问题，
+
+一，内存泄露，这里setVideoCallback时会从java层传下来buffer和MediaPlayer对象，其中MediaPlayer由于之后在Display回调中要用到，因此NewGlobalRef保存下来，这里如果没有释放的话，当
+MediaPlayer重建后，如手机横竖屏切换或多次退出进来，之前的MediaPlayer会一直被JNI层持有，包括MediaPlayer中的Buffer就泄露了，这个Buffer通常都不小。所以释放MediaPlayer时
+要解除jni层的引用。
+
+二，回调在子线程，Display回调是在子线程的，这里需要获取子线程的JNIEnv，需要AttachCurrentThread，调用完后在Detach。另外考虑到线程同步，要加上锁。
+
+三，这里的Buffer是Java层传下来的，考虑到性能，buffer是通过ByteBuffer.allocDirect创建的，这样可以直接被native层使用，通过GetDirectBufferAddress获取到buffer的地址。
+当数据更新完后通知Java层直接读就好了，不用多余的拷贝。
