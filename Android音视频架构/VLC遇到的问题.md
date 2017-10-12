@@ -234,3 +234,24 @@ MediaPlayer重建后，如手机横竖屏切换或多次退出进来，之前的
 
 三，这里的Buffer是Java层传下来的，考虑到性能，buffer是通过ByteBuffer.allocDirect创建的，这样可以直接被native层使用，通过GetDirectBufferAddress获取到buffer的地址。
 当数据更新完后通知Java层直接读就好了，不用多余的拷贝。
+
+------
+
+最后再来谈谈文章开始提到的四个需求，
+
+一，对于截屏，拿到了视频的Buffer数据后，可以通过如下方式生成Bitmap，然后保存文件
+
+```
+Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+bitmap.copyPixelsFromBuffer(buffer);
+```
+
+二，对于录屏，可以参考我的如下项目中的视频录制部分
+https://github.com/dingjikerbo/Android-Camera
+
+三，关于横竖屏切换及视频裁剪，同样可参考我的项目
+https://github.com/dingjikerbo/Android-Camera
+
+大致思路是通过OpenGL渲染来处理视频，先渲染到Offscreen Surface上，然后再Blit到Window Surface上显示，Blit时可以指定要裁剪的区域。
+
+四，关于视频的额外处理，如滤镜或者人脸识别同样可以参考我的Android-Camera项目
