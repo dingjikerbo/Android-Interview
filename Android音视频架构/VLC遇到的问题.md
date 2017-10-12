@@ -54,7 +54,9 @@ public void releasePlayer() {
 
 这里值得一提的是调setVideoView设置视频输出，可以是TextureView，也可以是SurfaceView，也可以是SurfaceTexture。我尝试过使用SurfaceTexture，然后当Frame Available时再从SurfaceTexture绘制到Window Surface上，结果显示出来的是一团糟，原因尚未查明。
 
-另外为了避免视频播放时卡顿，最好加上cache。
+另外为了避免视频播放时卡顿，最好加上各种Cache。注意Cache设得太大会增加延时。
+
+------
 
 接下来说说这种方式的局限：
 
