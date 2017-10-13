@@ -94,7 +94,7 @@ static inline void vout_display_Display(vout_display_t *vd,
 
 这个函数一直往上走的调用栈如下：
 ```
-display.c: 
+stream_out/display.c: 
 Open -> Add -> 
 
 decoder.c
@@ -113,4 +113,27 @@ vmem.c
 Display
 ```
 
-display.c也是一个模块，
+display.c也是一个模块，其中有Open和Close回调。我们看看这个module的open是怎么触发的，在entry.c的vlc_plugin_setter中设置的module->pf_activate。依次往上查看调用栈如下：
+
+```
+libvlcjni.c
+Java_org_videolan_libvlc_LibVLC_nativeNew
+
+core.c
+libvlc_new ->
+
+libvlc.c
+libvlc_InternalInit ->
+
+bank.c
+module_LoadPlugins -> module_InitStaticModules -> module_InitStatic -> 
+
+entry.c
+vlc_plugin_describe -> vlc_plugin_setter
+```
+
+经过这一番追本溯源，总算和起始入口打通了，但是有点乱，我们需要再给整个流程梳理一番，彻底走通。
+
+整个流程包括：如何发起的Rtsp请求，获取响应数据，如何获取的视频流，如何本地渲染。
+
+这些我们下文再分析。
