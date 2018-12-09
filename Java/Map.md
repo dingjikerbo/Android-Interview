@@ -17,3 +17,4 @@ TreeMap基于红黑树实现，根据key进行排序，可以指定comparator。
 **红黑树**：是一颗平衡二叉树，每次写操作都要重新调整树结构使其保持平衡，添加、查找、删除都是O(lgn)。
 
 # WeakHashMap
+和HashMap一样也是个散列表，它的特殊之处在于WeakHashMap里的entry可能会被GC自动删除，即使程序员没有调用remove()或者clear()方法。这个特点特别适用于需要缓存的场景。在缓存场景下，由于内存是有限的，不能缓存所有对象；对象缓存命中可以提高系统效率，但缓存MISS也不会造成错误，因为可以通过计算重新得到。WeakHashMap内部是通过弱引用来管理entry的，弱引用的特性对应到 WeakHashMap 上意味着什么呢？将一对key, value放入到WeakHashMap里并不能避免该key值被GC回收，除非在 WeakHashMap之外还有对该key的强引用。
