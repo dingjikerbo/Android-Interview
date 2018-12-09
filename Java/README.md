@@ -3,9 +3,9 @@
 # 目录
 ## Java基础
  - [String/StringBuffer/StringBuilder](String.md)
- - [ArrayList/LinkedList/Vector](Map.md)
- - HashMap/HashTable/TreeMap/LindedHashMap/ConcurrentHashMap
- - final finally finalize
+ - [ArrayList/LinkedList/Vector](List.md)
+ - [HashMap/HashTable/TreeMap/LindedHashMap/ConcurrentHashMap](Map.md)
+ - [final finally finalize](Final.md)
  - Excption/Error
  - Java面向对象的三个特征与含义。 
  - Override和Overload的含义去区别。 
