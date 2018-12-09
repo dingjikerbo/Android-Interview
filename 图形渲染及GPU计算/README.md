@@ -1,3 +1,0 @@
- - 熟悉OpenGL大部分概念即可，具体技术用的时候再研究
- - 关注移动端GPGPU，如OpenCL
- - CUDA
