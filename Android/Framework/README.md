@@ -1,9 +1,9 @@
 # Android Framework
 
+- Android整体系统架构
 - Android系统启动流程
-- Launcher启动流程
-- 应用安装过程
 - 应用启动过程，launcher启动及应用内启动
+- 应用安装过程
 - View的绘制/事件分发
 - Surface原理
 - Service的启动

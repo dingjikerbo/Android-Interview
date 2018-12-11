@@ -1,0 +1,19 @@
+# Android启动流程
+
+首先启动linux内核，内核加载完成后，第一件事启动init进程，根据init.rc中的配置，启动zygote进程。
+
+在Android系统中，DVM/ART，应用程序进程以及SystemServer进程都是由Zygote通过fork创建的，由于Zygote进程启动时会创建DVM/ART，因此其fork出来的进程都可以获取一个DVM/ART的实例副本。
+
+init启动zygote进程，会调到AndroidRuntime的start函数，其中做了几件事，首先启动Java虚拟机，然后为虚拟机注册JNI方法，为什么要这样准备Java环境呢，因为接下来的调用想在Java层做，即ZygoteInit类的main函数。
+
+ZygoteInit中主要做了几件事，首先创建一个server端socket，启动SystemServer进程，然后runSelectLoop，通常是等待AMS请求创建新的应用程序进程的。
+
+SystemServer进程主要用于创建系统服务，如AMS/PMS/WMS。SystemServer启动过程中，会启动Binder线程池，启动各种系统服务。所谓启动服务，即将Service注册到ServiceManager中，然后调用Service的onStart回调。
+
+SystemServer进程在启动时会启动PMS，PMS启动后会收集系统中已安装的应用程序信息。一切准备就绪后，AMS会将Launcher启动起来，Launcher就类似于一个系统的Activity，在启动后会去加载系统已安装的应用程序信息，
+
+
+# 如何添加一个自定义的系统服务
+在SystemServer启动各项系统服务的时候，原理是依次回调各服务的onStart函数，其中服务自己调用ServiceManager.addService，将自己的Binder Stub注册到ServiceManager中。
+
+所以如果要自定义一个系统服务，需要创建一个Stub类，然后在SystemServer启动服务时将这个Stub类注册到ServiceManager中。然后由于应用程序是通过getSystemService获取系统服务业务类的，通常都是通过SystemServiceRegistry缓存系统服务Binder，拿到Binder后封装一层业务类即可。因此要在SystemServiceRegistry中添加该服务的缓存逻辑。
