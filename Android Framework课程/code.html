@@ -1,0 +1,26 @@
+<html>
+<body style="font-size: 18px;font-weight:bold">
+
+    <div><pre style="margin:0px;font-size:20px;font-weight:bold">
+int main(int argc, char *argv[]) {</pre><pre style="margin:0px;">
+    JavaVM *jvm;
+    JNIEnv *env;
+
+    ......
+
+</pre><pre style="margin:0px;color:#ff0000">
+    JNI_CreateJavaVM(&jvm, (void **) &env, &vm_args);</pre><pre style="margin:0px">
+
+    jclass clazz = env->FindClass("ZygoteInit");
+    if (clazz != NULL) {
+        jmethodID method = env->GetStaticMethodID(clazz, "Main", "([Ljava/lang/String;)V");
+        if (method != NULL) {</pre><pre style="margin:0px;color:#ff0000">
+            env->CallStaticVoidMethod(clazz, method, args);</pre><pre style="margin:0px;">
+        }
+    }</pre><pre style="margin:0px;color:#ff0000">
+
+    jvm->DestroyJavaVM();</pre><pre style="margin:0px;">
+    return 0;
+}</pre></div>
+</body>
+</html>
