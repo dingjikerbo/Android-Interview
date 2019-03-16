@@ -1,23 +1,8 @@
+# 5.1 说说应用的冷启动流程
 
 
-# WindowManager的addView和addContentView有什么区别
-
-
-# Dialog和PopupWindow的区别在哪里?为什么Dialog传入application的Context会报错?
-
-
-# ViewRootImpl是什么,一个Activity有多少个ViewRootImpl对象?
-
-
-# 该怎样理解Window的作用?
-
-
-# Activity 是如何生成一个 view 的，机制是什么
-
-# SurfaceView和view的区别？
-
-
-# 谈谈你对应用UI线程的理解？
+# 5.2 应用的UI线程是怎么启动的？
+谈谈你对应用UI线程的理解？
 https://developer.android.com/studio/write/annotations.html#thread-annotations
 什么是应用的UI线程，是UI绘制所在的线程么，还是应用的主线程。那么UI线程有什么特点，
 应用的UI线程是怎么启动的？UI线程是应用进程的主线程么？是，但是可以不用是。
@@ -33,8 +18,26 @@ ActivityThread是什么，是UI线程么，不，这个不是继承线程的。
 可参考深入理解Android内核设计思想5.3UI主线程-ActivitytHREAD
 UI绘制是怎么放在UI线程的，那个异常是怎么抛出来的
 
+# 5.3 说说Activity的显示原理
+从setContentView到界面显示出来中间经历了哪些过程？
+Activity 是如何生成一个 view 的，view的加载机制
+这个问题特别大，因为涉及到的角色很多，把每个都讲清楚不太现实
+所以我们有个侧重
 
-# 好的资源
-https://silencedut.github.io/2016/08/10/Android视图框架Activity,Window,View,ViewRootImpl理解/
-https://juejin.im/entry/584f7078ac502e006937a392
-[Android 面试问题: Framework 工作方式及原理，Activity 是如何生成一个 view 的，机制是什么?](https://www.zhihu.com/question/20025633)
+说说Activity, window和view的区别
+
+[Android Activity 生成 View 过程](https://www.jianshu.com/p/e7c9916940b6)
+
+
+# 5.4 说说Activity界面的刷新机制
+《深入理解Android卷一》
+vsync， chreographer
+[Android Choreographer 源码分析](https://www.jianshu.com/p/996bca12eb1d)
+[AndroidUI系列—浅谈图像渲染机制](https://www.jianshu.com/p/1998182670fb)
+
+
+# 5.5 说说输入事件是怎么分发的
+怎么从framework层分发到应用层的？
+InputEventReceiver
+
+
