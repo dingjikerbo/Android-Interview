@@ -18,6 +18,9 @@ ActivityThread是什么，是UI线程么，不，这个不是继承线程的。
 可参考深入理解Android内核设计思想5.3UI主线程-ActivitytHREAD
 UI绘制是怎么放在UI线程的，那个异常是怎么抛出来的
 
+# 5.3 主线程Looper.loop了，为什么没有ANR呢？
+你要搞清楚怎么样才会ANR？
+
 # 5.3 说说Activity的显示原理
 从setContentView到界面显示出来中间经历了哪些过程？
 Activity 是如何生成一个 view 的，view的加载机制
@@ -27,7 +30,6 @@ Activity 是如何生成一个 view 的，view的加载机制
 说说Activity, window和view的区别
 
 [Android Activity 生成 View 过程](https://www.jianshu.com/p/e7c9916940b6)
-
 
 # 5.4 说说Activity界面的刷新机制
 《深入理解Android卷一》

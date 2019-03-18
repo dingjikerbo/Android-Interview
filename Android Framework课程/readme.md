@@ -1,5 +1,5 @@
 
-# 总进度 17/45
+# 总进度 21/45
 
 # 第01章 课程介绍
 | # | 课程题目 | 状态 |
@@ -34,9 +34,10 @@
 |---|-----|------|
 |1|说说应用的冷启动流程|Done|
 |2|应用的UI线程是怎么启动的？|Done|
-|3|说说Activity的显示原理|Pending|
-|4|说说Activity界面的刷新机制|Pending|
-|5|说说输入事件是怎么分发的|Pending|
+|3|主线程Looper.loop了，为什么没有ANR呢？|Pending|
+|4|说说Activity的显示原理|Pending|
+|5|说说Activity界面的刷新机制|Pending|
+|6|说说输入事件是怎么分发的|Pending|
 
 # 第06章 Service
 | # | 课程题目 | 状态 | 
@@ -58,7 +59,6 @@
 |2|provider的工作原理？|Pending|
 |3|provider如何跨进程传输数据的？|Pending|
 
-
 # 第09章 进程通信
 | # | 课程题目 | 状态 | 
 |---|-----|------|
@@ -73,12 +73,12 @@
 # 第10章 线程通信
 | # | 课程题目 | 状态 | 
 |---|-----|------|
-|1|说说Android里线程间消息传递机制？|Pending|
-|2|handler的postDelay或sendMessageDelayed是怎么实现延时的|Pending|
-
+|1|说说线程的消息队列是怎么创建的？|Done|
+|2|说说Android里线程间消息传递机制？|Done|
+|3|handler的消息延时是怎么实现的？|Done|
+|4|说说idleHandler原理|Done|
 待定：
-|4|怎么设计一个同步的消息处理？|Pending|
-|2|activity的主线程looper.loop为什么没死循环？|Pending|
+|1|怎么设计一个同步的消息处理？|Pending|
 
 # 第11章 UI体系
 | # | 课程题目 | 状态 | 

@@ -1,8 +1,7 @@
 
+# 说说线程的消息队列是怎么创建的？
 
-# activity的主线程looper.loop为什么没死循环？
-
-
+# 说说idleHandler原理
 
 # handler的postDelay或sendMessageDelayed是怎么实现延时的
 
@@ -19,8 +18,16 @@ MainLooper和普通Looper的区别？
 handler的工作原理
 
 
+# 说说threadLocal工作原理
+
 # 怎么设计一个同步的消息处理？
 postSync?
 
+# syncBarrier
+
 
 # blockCanry的实现？
+
+
+# 其它
+instrumentation里面的SyncRunnable
