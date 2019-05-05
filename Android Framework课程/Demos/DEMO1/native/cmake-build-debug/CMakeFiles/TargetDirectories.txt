@@ -1,3 +1,0 @@
-/Users/dingjikerbo/我的课程/Android Framework教学/Demos/DEMO1/native/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/dingjikerbo/我的课程/Android Framework教学/Demos/DEMO1/native/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/dingjikerbo/我的课程/Android Framework教学/Demos/DEMO1/native/cmake-build-debug/CMakeFiles/test1.dir

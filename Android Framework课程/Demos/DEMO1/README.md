@@ -1,3 +1,0 @@
-# README
-
-给java工程的class文件拷贝到native工程的根目录
